@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 OK = 'OK'
 ZERO_RESULTS = "ZERO_RESULTS"
+REQUEST_DENIED = "REQUEST_DENIED"
