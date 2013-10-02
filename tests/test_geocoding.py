@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import pytest
-from pprint import pprint
-
 from gmaps import errors
 
 from gmaps.geocoding import Geocoding
@@ -43,6 +41,18 @@ def test_geocode_no_results_exception():
 def test_geocode_language():
     results = geocoding.geocode(u"Wrocław, Hubska", language='pl')
     assert 'Polska' in results[0]['formatted_address']
+
+def test_geocode_region():
+    results = geocoding.geocode("Toledo", region="us")
+    assert 'USA' in results[0]['formatted_address']
+
+    results = geocoding.geocode("Toledo", region="es")
+    assert 'Spain' in results[0]['formatted_address']
+
+def test_geocode_bounds():
+    results1 = geocoding.geocode("Winnetka", bounds=((42.1282269, -87.71095989999999), (42.0886089, -87.7708363)))
+    results2 = geocoding.geocode("Winnetka", bounds=((34.172684, -118.604794), (34.236144, -118.500938)))
+    assert results1[0]['formatted_address'] != results2[0]['formatted_address']
 
 def test_reverse():
     results = geocoding.reverse(lat=51.213, lon=21.213)
