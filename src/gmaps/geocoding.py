@@ -1,26 +1,30 @@
 # -*- coding: utf-8 -*-
 from client import Client
 
-class Geocode(Client):
+class Geocoding(Client):
     GEOCODE_URL = "geocode/"
 
-    def __init__(self, components=None, sensor=None, **kwargs):
-        super(Geocode, self).__init__(**kwargs)
-        self.components = components
-        self.sensor = sensor
+    def __init__(self, sensor=False, **kwargs):
+        super(Geocoding, self).__init__(sensor=sensor, **kwargs)
 
-    def geocode(self, address, **kwargs):
+    def geocode(self, address=None, components=None, region=None, language=None, bounds=None, sensor=None):
         parameters=dict(
             address=address,
-            components=self.components,
-            sensor=self.sensor,
+            components=components,
+            language=language,
+            sensor=sensor,
+            region=region,
+
         )
-        parameters.update(kwargs)
+
+        if bounds:
+            parameters['bounds'] = "%s,%s|%s,%s" % (bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1])
         return self._make_request(self.GEOCODE_URL, parameters)
 
-    def reverse_geocode(self, lat, lon, **kwargs):
+    def reverse(self, lat, lon, language=None, sensor=None):
         parameters = dict(
-            latlng="%s,%s" % (lat, lon)
+            latlng="%s,%s" % (lat, lon),
+            language=language,
+            sensor=sensor,
         )
-        parameters.update(kwargs)
         return self._make_request(self.GEOCODE_URL, parameters)
