@@ -40,6 +40,10 @@ def test_geocode_no_results_exception():
     with pytest.raises(errors.NoResults):
         geocoding.geocode(components)
 
+def test_geocode_language():
+    results = geocoding.geocode(u"Wrocław, Hubska", language='pl')
+    assert 'Polska' in results[0]['formatted_address']
+
 def test_reverse():
     results = geocoding.reverse(lat=51.213, lon=21.213)
     assert results
