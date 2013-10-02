@@ -33,7 +33,7 @@ class Client(object):
                 parameters[key] = "|".join(("%s:%s" % (k, v) for k,v in value.iteritems()))
         return parameters
 
-    def _make_request(self, url, parameters):
+    def _make_request(self, url, parameters, result_key="results"):
         url = urlparse.urljoin(urlparse.urljoin(self.base, url), "json")
 
         #drop all None values and use defaults if not set
@@ -47,7 +47,7 @@ class Client(object):
         response = raw_response.json()
 
         if response["status"] == status.OK:
-            return response["results"]
+            return response[result_key]
         else:
             response["url"] = raw_response.url
             raise errors.EXCEPTION_MAPPING.get(response["status"], errors.GmapException)(response)
