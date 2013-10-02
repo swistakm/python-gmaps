@@ -33,7 +33,7 @@ class Client(object):
                 parameters[key] = "|".join(("%s:%s" % (k, v) for k,v in value.iteritems()))
         return parameters
 
-    def _make_request(self, url, parameters, result_key="results"):
+    def _make_request(self, url, parameters, result_key):
         url = urlparse.urljoin(urlparse.urljoin(self.base, url), "json")
 
         #drop all None values and use defaults if not set
