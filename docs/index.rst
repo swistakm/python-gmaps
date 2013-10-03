@@ -13,6 +13,8 @@ API:
 
    gmaps
 
+`repo on github <https://github.com/swistakm/python-gmaps>`_
+
 
 Indices and tables
 ==================

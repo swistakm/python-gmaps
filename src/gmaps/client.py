@@ -9,19 +9,21 @@ import errors
 
 
 class Client(object):
+    """Base class for Google Maps API endpoints
+
+    :param sensor: boolean value indicating if application is using sensor
+        (such as a GPS locator) to determine the user's location.
+    :param api_key: google business API key
+    :param use_https: boolean indicating if https should be use to make requests
+
+    .. note:: Google API won't allow you to make plain http requests with
+        API key. If you would like to use api_key you should use https too.
+    """
     BASE_API_HTTP_URL = "http://maps.googleapis.com/maps/api/"
     BASE_API_HTTPS_URL = "https://maps.googleapis.com/maps/api/"
 
     def __init__(self, sensor=False, api_key=None, use_https=True):
-        """
-        :param sensor: boolean value indicating if application is using sensor
-            (such as a GPS locator) to determine the user's location.
-        :param api_key: google business API key
-        :use_https: boolean indicating if https should be use to make requests
 
-        .. note:: Google API won't allow you to make plaint http requests with
-            API key. If you would like to use api_key you should use https too.
-        """
 
         self.sensor = sensor
         self.api_key = api_key

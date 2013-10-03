@@ -10,8 +10,8 @@ class Geocoding(Client):
         """Geocode given address. Geocoder can queried using address and/or
         components. Components when used with address will restrict your query
         to specific area. When used without address they act like more precise
-        query. For full details see:
-        `Google docs <https://developers.google.com/maps/documentation/geocoding/>`
+        query. For full details see
+        `Google docs <https://developers.google.com/maps/documentation/geocoding/>`_.
 
         :param address: address string
         :param components: ditc of components

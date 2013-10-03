@@ -32,17 +32,17 @@ class Directions(Client):
             attributes
         :param destination: Destination location - type same as origin
         :param mode: Travel mode as string, defaults to "driving".
-            See `google docs details <https://developers.google.com/maps/documentation/directions/#TravelModes>`
+            See `google docs details <https://developers.google.com/maps/documentation/directions/#TravelModes>`_
         :param alternatives: True if provide it has to return more then one
             route alternative
         :param avoid: Iterable with set of restrictions,
             like ("tolls", "highways"). For full list refer to
-            `google docs details <https://developers.google.com/maps/documentation/directions/#Restrictions>`
+            `google docs details <https://developers.google.com/maps/documentation/directions/#Restrictions>`_
         :param language: The language in which to return results.
-            See `list of supported languages <https://developers.google.com/maps/faq#languagesupport>`
+            See `list of supported languages <https://developers.google.com/maps/faq#languagesupport>`_
         :param units: Unit system for result. Defaults to unit system of
             origin's country.
-            See `google docs details <https://developers.google.com/maps/documentation/directions/#UnitSystems>`
+            See `google docs details <https://developers.google.com/maps/documentation/directions/#UnitSystems>`_
         :param region: The region code. Affects geocoding of origin and
             destination (see `gmaps.Geocoding.geocode` region parameter)
         :param departure_time: Desired time of departure as
