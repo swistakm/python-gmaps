@@ -8,12 +8,11 @@ There are a bunch of libraries for Google Maps Web Service. To name a few:
 * [googlemaps](https://pypi.python.org/pypi/googlemaps/)
 * [google.directions](https://pypi.python.org/pypi/google.directions)
 
-What's wrong with them? `googlemaps` uses deprecated google API and forces
+What's wrong with them? googlemaps uses deprecated google API and forces
 you to format your parameters instead of using native python datatypes.
-And IMHO is quite incoherent. And `google.directions`? Just take a look
-inside it's code...
+And what about google.directions? Just take a look inside it's code...
 
-So here is code using new Google Maps API endpoints. It requires
+So here is code for new Google Maps API endpoints. It requires
 [requests](https://github.com/kennethreitz/requests), supports native python
 datatypes and is sweetened with some syntactic sugar. Nothing more.
 No bells and whistles.
@@ -49,7 +48,7 @@ than `OK`. It also unpacks results list from Google API output dict so you have
 one key less to access but it does nothing more.
 So if Google geocoding api outputs something like:
 
-```json
+```
 {
     results: [
     ...
