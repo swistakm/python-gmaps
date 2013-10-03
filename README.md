@@ -70,9 +70,10 @@ Available endpoints:
 * `Geocoding()`
 * `Directions()`
 
-For detailed documentation of each endpoint refer to dosctrings. If you need
-list of available values for some parameters (like geocoding components,
-languages, regions etc.) refer to
+For detailed documentation of each endpoint refer to dosctrings or
+[this API documentation](http://python-gmaps.readthedocs.org/en/latest/).
+If you need list of available values for some parameters (like geocoding
+components, languages, regions etc.) refer to
 [Google Maps API docs](https://developers.google.com/maps/documentation/webservices/).
 These values can change anytime so there is no reason to check for them in this
 lib - they will be checked anyway.
