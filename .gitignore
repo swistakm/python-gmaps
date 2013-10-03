@@ -34,3 +34,6 @@ nosetests.xml
 .project
 .pydevproject
 .idea
+
+# Sphinx docs builds
+docs/_build
