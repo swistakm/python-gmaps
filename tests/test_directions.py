@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from pprint import pprint
 import pytest
-from gmaps import Directions
+from gmaps import Directions, errors
 
 api = Directions()
 
@@ -44,7 +43,7 @@ def test_directions_wrong_type():
     with pytest.raises(TypeError):
         # wrong list size
         api.directions((40.728783, -73.7897503, 3.434),
-                                 (40.6497484, -73.97767999999999))
+                       (40.6497484, -73.97767999999999))
     with pytest.raises(TypeError):
         # no keys
         api.directions({}, {})
@@ -52,3 +51,85 @@ def test_directions_wrong_type():
         # unsupported type
         api.directions(2, 3)
 
+
+def test_directions_mode():
+    results = api.directions(
+        "Warsaw, Poland", "Katowice, Poland",
+        mode="driving",
+    )
+
+    for step in results[0]["legs"][0]["steps"]:
+        assert step['travel_mode'] == u"DRIVING"
+
+    results = api.directions(
+        u"Łubinowa 1D, Wrocław", u"Gajowa 14, Wrocław",
+        mode="walking",
+    )
+    for step in results[0]["legs"][0]["steps"]:
+        assert step['travel_mode'] == u"WALKING"
+
+    results = api.directions(
+        u"Łubinowa 1D, Wrocław", u"Gajowa 14, Wrocław",
+        mode="bicycling",
+    )
+    for step in results[0]["legs"][0]["steps"]:
+        assert step['travel_mode'] == u"BICYCLING"
+
+
+def test_directions_mode_transit_invalid_request():
+    """test that mode=transit raises exception when no departure or
+    arrival time is set
+    """
+    with pytest.raises(errors.InvalidRequest):
+        api.directions(u"Warsaw, Poland", u"Katowice, Poland", mode="transit")
+
+
+def test_directions_mode_transit():
+    from datetime import datetime
+
+    try:
+        api.directions(
+            u"Warsaw, Poland", u"Poznań, Poland",
+            mode="transit", departure_time=int(datetime.utcnow().strftime("%s"))
+        )
+
+    except errors.NoResults:
+        # just test if it doesn't raise any other exceptions, if its
+        # ZERO_RESULTS it's - we know that request was ok
+        pass
+
+    try:
+        api.directions(
+            u"Warsaw, Poland", u"Poznań, Poland",
+            mode="transit", arrival_time=int(datetime.utcnow().strftime("%s"))
+        )
+    except errors.NoResults:
+        pass
+
+def test_directions_alternatives():
+    with_alts = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
+                               alternatives=True)
+    without_alts = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
+                                  alternatives=False)
+    assert len(with_alts) > 1
+    assert len(without_alts) == 1
+
+
+def test_directions_language():
+    pl = api.directions(u"Warsaw, Poland", u"Katowice, Poland", language='pl')
+    assert u"Polska" in str(pl) and u"Poland" not in str(pl)
+    en = api.directions(u"Warsaw, Poland", u"Katowice, Poland", language='en')
+    assert u"Polska" not in str(en) and u"Poland" in str(en)
+
+
+def test_directions_units():
+    metric = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
+                            units="metric")[0]['legs'][0]["distance"]
+    imperial = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
+                              units="imperial")[0]['legs'][0]["distance"]
+
+    # text is different
+    assert u"km" in metric["text"]
+    assert u"mi" in imperial["text"]
+    # but value is the same (in meters)
+    assert metric["value"] == imperial["value"]
