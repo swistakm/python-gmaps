@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from client import Client
 
+
 class Geocoding(Client):
     GEOCODE_URL = "geocode/"
 
     def geocode(self, address=None, components=None, region=None, language=None, bounds=None, sensor=None):
-        parameters=dict(
+        parameters = dict(
             address=address,
             components=components,
             language=language,
