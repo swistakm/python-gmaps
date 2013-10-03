@@ -69,6 +69,7 @@ For each API endpoint you can specify:
 
 Available endpoints:
 * `Geocoding()`
+* `Directions()`
 
 For detailed documentation of each endpoint refer to dosctrings. If you need
 list of available values for some parameters (like geocoding components,
@@ -79,9 +80,9 @@ lib - they will be checked anyway.
 
 ## Changes
 
-### 0.0.2 (TBA)
+### 0.0.2 (2013-10-03)
 - `Directions` endpoint added
 
-### 0.0.1 (2013-10-03)
+### 0.0.1 (2013-10-02)
 - initial release
 - ```Geocoding``` endpoint
