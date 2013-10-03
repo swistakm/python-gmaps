@@ -14,8 +14,9 @@ And IMHO is quite incoherent. And `google.directions`? Just take a look
 inside it's code...
 
 So here is code using new Google Maps API endpoints. It requires
-[requests](https://github.com/kennethreitz/requests) and supports native python
-datatypes. Nothing more. No bells and whistles.
+[requests](https://github.com/kennethreitz/requests), supports native python
+datatypes and is sweetened with some syntactic sugar. Nothing more.
+No bells and whistles.
 
 Any contributions (code/issues) are welcome.
 
@@ -33,6 +34,14 @@ api = Geocoding()
 
 api.geocode("somwhere")
 api.reverse(51.123, 21.123)
+```
+
+If you need to use Google Maps API for Business then instantiate your endpoint
+with `api_key` param
+
+```python
+from gmaps import Geocoding
+api = Geocoding(api_key='your_secret_api_key`)
 ```
 
 Each endpoint method raises adequate exception when status of query is different
@@ -60,6 +69,13 @@ For each API endpoint you can specify:
 
 Available endpoints:
 * `Geocoding()`
+
+For detailed documentation of each endpoint refer to dosctrings. If you need
+list of available values for some parameters (like geocoding components,
+languages, regions etc.) refer to
+[Google Maps API docs](https://developers.google.com/maps/documentation/webservices/).
+These values can change anytime so there is no reason to check for them in this
+lib - they will be checked anyway.
 
 ## Changes
 
