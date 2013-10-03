@@ -2,7 +2,7 @@
 import pytest
 from gmaps import errors
 
-from gmaps.geocoding import Geocoding
+from gmaps import Geocoding
 
 geocoding = Geocoding(sensor=False)
 
@@ -20,7 +20,8 @@ def test_geocode_override_sensor():
 
 
 def test_geocode_components_filters():
-    """Test if querying with same route but different component filtering returns different locations"""
+    """Test if querying with same route but different component filtering
+    returns different locations"""
     # both these cities has this street
     results1 = geocoding.geocode(u"Łubinowa",
                                  components={"locality": "Wrocław"})
@@ -40,7 +41,7 @@ def test_geocode_components_without_address():
     results_with_address = geocoding.geocode(components=components)
     results_without_address = geocoding.geocode(address)
     assert results_with_address[0]['geometry']['location'] == \
-           results_without_address[0]['geometry']['location']
+        results_without_address[0]['geometry']['location']
 
 
 def test_geocode_no_results_exception():
