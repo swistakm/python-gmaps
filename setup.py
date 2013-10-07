@@ -1,19 +1,28 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-import sys, os
+import os
+import re
 
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src') )
-from gmaps import __version__ as version
 
 def strip_comments(l):
     return l.split('#', 1)[0].strip()
+
 
 def reqs(*f):
     return list(filter(None, [strip_comments(l) for l in open(
         os.path.join(os.getcwd(), *f)).readlines()]))
 
-install_requires = reqs('requirements.txt')
 
+def get_version(package):
+    """
+    Return package version as listed in `__version__` in `init.py`.
+    """
+    init_py = open(os.path.join(package, '__init__.py')).read()
+    return re.search("__version__ = ['\"]([^'\"]+)['\"]", init_py).group(1)
+
+
+install_requires = reqs('requirements.txt')
+version = get_version('src/gmaps')
 README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 PACKAGES = find_packages('src')
 PACKAGE_DIR = {'': 'src'}
