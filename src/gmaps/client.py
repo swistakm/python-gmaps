@@ -76,9 +76,36 @@ class Client(object):
         raw_response = requests.get(url, params=parameters)
         response = raw_response.json()
 
-        if response["status"] == status.OK:
+        if response["status"] == status.OK and result_key is not None:
             return response[result_key]
+        elif response["status"] == status.OK:
+            del response["status"]
+            return response
         else:
             response["url"] = raw_response.url
             raise errors.EXCEPTION_MAPPING.get(response["status"],
                                                errors.GmapException)(response)
+
+    @staticmethod
+    def assume_latlon_or_address(location):
+        if isinstance(location, basestring):
+            output = location
+        else:
+            output = Client.assume_latlon(location)
+
+        return output
+
+    @staticmethod
+    def assume_latlon(location):
+        if isinstance(location, dict):
+            try:
+                output = "%f,%f" % (location["lat"], location["lon"])
+            except KeyError:
+                raise TypeError("%s is invalid location object" % str(location))
+        elif hasattr(location, "__iter__") and len(location) == 2:
+            output = "%f,%f" % (location[0], location[1])
+        elif hasattr(location, "lat") and hasattr(location, "lon"):
+            output = "%f,%f" % (location.lat, location.lon)
+        else:
+            raise TypeError("%s is invalid location object" % str(location))
+        return output
