@@ -69,6 +69,7 @@ For each API endpoint you can specify:
 Available endpoints:
 * `Geocoding()`
 * `Directions()`
+* `Timezone()`
 
 For detailed documentation of each endpoint refer to dosctrings or
 [this API documentation](http://python-gmaps.readthedocs.org/en/latest/).
@@ -79,6 +80,8 @@ These values can change anytime so there is no reason to check for them in this
 lib - they will be checked anyway.
 
 ## Changes
+### 0.1.0 (2014-05-09)
+- `Timezone` endpoint added
 
 ### 0.0.2 (2013-10-03)
 - `Directions` endpoint added
