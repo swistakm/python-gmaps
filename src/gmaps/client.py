@@ -3,7 +3,7 @@ import requests
 
 from gmaps import status
 from gmaps import errors
-from gmaps.compat import urlparse
+from gmaps.compat import urlparse, is_string
 
 
 class Client(object):
@@ -40,12 +40,12 @@ class Client(object):
         :type parameters: dict oif query parameters
         """
 
-        for key, value in parameters.iteritems():
+        for key, value in parameters.items():
             if isinstance(value, bool):
                 parameters[key] = "true" if value else "false"
             if isinstance(value, dict):
                 parameters[key] = "|".join(
-                    ("%s:%s" % (k, v) for k, v in value.iteritems()))
+                    ("%s:%s" % (k, v) for k, v in value.items()))
         return parameters
 
     def _make_request(self, url, parameters, result_key):
@@ -62,7 +62,7 @@ class Client(object):
         url = urlparse.urljoin(urlparse.urljoin(self.base, url), "json")
 
         #drop all None values and use defaults if not set
-        parameters = {key: value for key, value in parameters.iteritems() if
+        parameters = {key: value for key, value in parameters.items() if
                       value is not None}
         parameters.setdefault("sensor", self.sensor)
         parameters = self._serialize_parameters(parameters)
@@ -84,7 +84,7 @@ class Client(object):
 
     @staticmethod
     def assume_latlon_or_address(location):
-        if isinstance(location, basestring):
+        if is_string(location):
             output = location
         else:
             output = Client.assume_latlon(location)
