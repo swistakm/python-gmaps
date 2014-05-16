@@ -2,14 +2,14 @@
 from time import sleep
 from gmaps.errors import RateLimitExceeded
 
-RETRIES = 4
+MAX_RETRIES = 4
 
 
 def retry(test):
     def retrying_test(*args, **kwargs):
         retries = 0
 
-        while retries < RETRIES:
+        while retries < MAX_RETRIES:
             try:
                 return test(*args, **kwargs)
             except RateLimitExceeded:
