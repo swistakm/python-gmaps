@@ -1,33 +1,39 @@
 # -*- coding: utf-8 -*-
 import pytest
 from gmaps import Directions, errors
+from .testutils import retry
 
 api = Directions()
 
 
+@retry
 def test_simple_directions():
     results = api.directions("Warsaw, Poland", "Katowice, Poland")
     assert results[0]
 
 
+@retry
 def test_directions_lat_lon_tuples():
     results = api.directions((40.728783, -73.7897503),
                              (40.6497484, -73.97767999999999))
     assert results[0]
 
 
+@retry
 def test_directions_lat_lon_dicts():
     results = api.directions({"lat": 40.728783, "lon": -73.7897503},
                              {"lat": 40.6497484, "lon": -73.97767999999999})
     assert results[0]
 
 
+@retry
 def test_directions_lat_lon_google_formated():
     results = api.directions("40.728783,-73.7897503",
                              "40.6497484,-73.97767999999999")
     assert results[0]
 
 
+@retry
 def test_directions_lat_lon_some_object():
     class LatLon(object):
         def __init__(self, lat, lon):
@@ -39,6 +45,7 @@ def test_directions_lat_lon_some_object():
     assert results[0]
 
 
+@retry
 def test_directions_wrong_type():
     with pytest.raises(TypeError):
         # wrong list size
@@ -52,6 +59,7 @@ def test_directions_wrong_type():
         api.directions(2, 3)
 
 
+@retry
 def test_directions_mode():
     results = api.directions(
         "Warsaw, Poland", "Katowice, Poland",
@@ -76,6 +84,7 @@ def test_directions_mode():
         assert step['travel_mode'] == u"BICYCLING"
 
 
+@retry
 def test_directions_mode_transit_invalid_request():
     """test that mode=transit raises exception when no departure or
     arrival time is set
@@ -84,6 +93,7 @@ def test_directions_mode_transit_invalid_request():
         api.directions(u"Warsaw, Poland", u"Katowice, Poland", mode="transit")
 
 
+@retry
 def test_directions_mode_transit():
     from datetime import datetime
 
@@ -106,6 +116,8 @@ def test_directions_mode_transit():
     except errors.NoResults:
         pass
 
+
+@retry
 def test_directions_alternatives():
     with_alts = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
                                alternatives=True)
@@ -115,6 +127,7 @@ def test_directions_alternatives():
     assert len(without_alts) == 1
 
 
+@retry
 def test_directions_language():
     pl = api.directions(u"Warsaw, Poland", u"Katowice, Poland", language='pl')
     assert u"Polska" in str(pl) and u"Poland" not in str(pl)
@@ -122,6 +135,7 @@ def test_directions_language():
     assert u"Polska" not in str(en) and u"Poland" in str(en)
 
 
+@retry
 def test_directions_units():
     metric = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
                             units="metric")[0]['legs'][0]["distance"]

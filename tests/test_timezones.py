@@ -4,15 +4,18 @@ import pytz
 
 from gmaps.timezone import unixtimestamp
 from gmaps.timezone import Timezone
+from .testutils import retry
 
 timezone = Timezone().timezone
 
 
+@retry
 def test_unixtimestamp_naive():
     # test if that was UTC
     assert unixtimestamp(datetime(1970, 1, 1)) == 0.0
 
 
+@retry
 def test_unixtimestamp_tzaware():
     warsaw = pytz.timezone(u'Europe/Warsaw')
     dt = warsaw.localize(datetime(1970, 1, 1))
@@ -21,6 +24,7 @@ def test_unixtimestamp_tzaware():
     assert unixtimestamp(dt) == -3600.0
 
 
+@retry
 def test_timezone():
     once_upon_a_time = datetime(2014, 05, 9)
     somwhere_in_poland = lat, lon = 51.115355, 17.0256261
@@ -29,6 +33,7 @@ def test_timezone():
     assert result['timeZoneId'] == u'Europe/Warsaw'
 
 
+@retry
 def test_timezone_language():
     once_upon_a_time = datetime(2014, 05, 9)
     somwhere_in_poland = lat, lon = 51.115355, 17.0256261
