@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import urlparse
-
 import requests
 
-import status
-import errors
+from gmaps import status
+from gmaps import errors
+from gmaps.compat import urlparse
 
 
 class Client(object):

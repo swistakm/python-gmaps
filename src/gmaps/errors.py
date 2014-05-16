@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import status
+from gmaps import status
 
 
 class GmapException(BaseException):

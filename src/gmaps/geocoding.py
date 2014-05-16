@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from client import Client
+from gmaps.client import Client
 
 
 class Geocoding(Client):
