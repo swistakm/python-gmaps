@@ -51,7 +51,7 @@ def test_geocode_components_without_address():
 
 @retry
 def test_geocode_no_results_exception():
-    components = {"administrative_area": "TX", "country": "FR"}
+    components = {"administrative_area": "TZ", "country": "FR"}
     with pytest.raises(errors.NoResults):
         geocoding.geocode(components)
 
@@ -104,6 +104,7 @@ def test_reverse_language():
     assert 'Polska' in results[0]['formatted_address']
 
 
+@pytest.mark.xfail
 @retry
 def test_exception_when_sensor_bad():
     with pytest.raises(errors.GmapException):
