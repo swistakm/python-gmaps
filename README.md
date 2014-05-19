@@ -1,7 +1,10 @@
 [![Build Status](https://travis-ci.org/swistakm/gmaps.svg?branch=master)](https://travis-ci.org/swistakm/gmaps)
 # python-gmaps
 
-Google Maps API client.
+Google Maps API client. For full API documentation go to:
+
+http://python-gmaps.readthedocs.org
+
 
 ## Why yet another python google maps client?
 
@@ -81,6 +84,10 @@ These values can change anytime so there is no reason to check for them in this
 lib - they will be checked anyway.
 
 ## Changes
+
+### 0.1.1 (2014-05-16)
+- python 3.3 support
+
 ### 0.1.0 (2014-05-09)
 - `Timezone` endpoint added
 

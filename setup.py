@@ -2,6 +2,7 @@
 from setuptools import setup, find_packages
 import os
 
+
 def strip_comments(l):
     return l.split('#', 1)[0].strip()
 
@@ -38,6 +39,7 @@ setup(
     packages=PACKAGES,
     package_dir=PACKAGE_DIR,
 
+    url='https://github.com/swistakm/python-gmaps',
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     zip_safe=False,
@@ -50,5 +52,4 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
     ],
-
 )
