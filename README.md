@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/swistakm/gmaps.svg?branch=master)](https://travis-ci.org/swistakm/gmaps)
+[![Build Status](https://travis-ci.org/swistakm/python-gmaps.svg?branch=master)](https://travis-ci.org/swistakm/python-gmaps)
 # python-gmaps
 
 Google Maps API client. For full API documentation go to:
