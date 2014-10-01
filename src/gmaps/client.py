@@ -43,9 +43,11 @@ class Client(object):
         for key, value in parameters.items():
             if isinstance(value, bool):
                 parameters[key] = "true" if value else "false"
-            if isinstance(value, dict):
+            elif isinstance(value, dict):
                 parameters[key] = "|".join(
                     ("%s:%s" % (k, v) for k, v in value.items()))
+            elif isinstance(value, list) or isinstance(value, tuple):
+                parameters[key] = "|".join(val for val in value)
         return parameters
 
     def _make_request(self, url, parameters, result_key):
