@@ -6,6 +6,7 @@ class Directions(Client):
     DIRECTIONS_URL = 'directions/'
 
     def directions(self, origin, destination, mode=None, alternatives=None,
+                   waypoints=[], optimizeWaypoints=False,
                    avoid=None, language=None, units=None,
                    region=None, departure_time=None, arrival_time=None, sensor=None):
         """Get directions between locations
@@ -33,11 +34,14 @@ class Directions(Client):
         :param arrival_time: Desired time of arrival for transit directions as
             seconds since midnight, January 1, 1970 UTC.
         """
+        if optimizeWaypoints:
+            waypoints.insert(0, "optimize:true")
         parameters = dict(
             origin=self.assume_latlon_or_address(origin),
             destination=self.assume_latlon_or_address(destination),
             mode=mode,
             alternatives=alternatives,
+            waypoints=waypoints,
             avoid=avoid,
             language=language,
             units=units,

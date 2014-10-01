@@ -153,3 +153,16 @@ def test_array_serialization():
     tollsHighways = Directions().directions('paris', 'berlin', avoid=('tolls', 'highways'))[0]['legs'][0]['duration']
     highwaysTolls = Directions().directions('paris', 'berlin', avoid=('highways', 'tolls'))[0]['legs'][0]['duration']
     assert tollsHighways == highwaysTolls
+
+@retry
+def test_waypoints():
+    noWaypointsLegs = len(api.directions('paris', 'berlin')[0]['legs'])
+    oneWaypointLegs = len(api.directions('paris', 'berlin', waypoints=['munich'])[0]['legs'])
+    twoWaypointsLegs = len(api.directions('paris', 'berlin', waypoints=['munich', 'moscow'])[0]['legs'])
+    assert noWaypointsLegs == 1 and oneWaypointLegs == 2 and twoWaypointsLegs == 3
+
+@retry
+def test_waypoint_optimization():
+    nonOptimized = api.directions('Los Angeles', 'New York', waypoints=['Dallas', 'Bangor', 'Phoenix'])
+    optimized = api.directions('Los Angeles', 'New York', waypoints=['Dallas', 'Bangor', 'Phoenix'], optimizeWaypoints=True)
+    assert optimized[0]['waypoint_order'] == [2, 0, 1] and nonOptimized[0]['waypoint_order'] == [0, 1, 2]
