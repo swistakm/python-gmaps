@@ -150,19 +150,33 @@ def test_directions_units():
 
 @retry
 def test_array_serialization():
-    tollsHighways = Directions().directions('paris', 'berlin', avoid=('tolls', 'highways'))[0]['legs'][0]['duration']
-    highwaysTolls = Directions().directions('paris', 'berlin', avoid=('highways', 'tolls'))[0]['legs'][0]['duration']
-    assert tollsHighways == highwaysTolls
+    tolls_highways = api.directions('paris', 'berlin', 
+                                    avoid=('tolls', 'highways'))
+    tolls_highways_dur = tolls_highways[0]['legs'][0]['duration']
+
+    highways_tolls = api.directions('paris', 'berlin', 
+                                    avoid=('highways', 'tolls'))
+    highways_tolls_dur = highways_tolls[0]['legs'][0]['duration']
+    assert tolls_highways_dur == highways_tolls_dur
+
 
 @retry
 def test_waypoints():
-    noWaypointsLegs = len(api.directions('paris', 'berlin')[0]['legs'])
-    oneWaypointLegs = len(api.directions('paris', 'berlin', waypoints=['munich'])[0]['legs'])
-    twoWaypointsLegs = len(api.directions('paris', 'berlin', waypoints=['munich', 'moscow'])[0]['legs'])
-    assert noWaypointsLegs == 1 and oneWaypointLegs == 2 and twoWaypointsLegs == 3
+    no_waypoints_legs = len(api.directions('paris', 'berlin')[0]['legs'])
+    one_waypoint_legs = len(api.directions('paris', 'berlin', 
+                                           waypoints=['munich'])[0]['legs'])
+    two_waypoints_legs = len(api.directions('paris', 'berlin', 
+                             waypoints=['munich', 'moscow'])[0]['legs'])
+    assert no_waypoints_legs == 1
+    assert one_waypoint_legs == 2
+    assert two_waypoints_legs == 3
 
 @retry
 def test_waypoint_optimization():
-    nonOptimized = api.directions('Los Angeles', 'New York', waypoints=['Dallas', 'Bangor', 'Phoenix'])
-    optimized = api.directions('Los Angeles', 'New York', waypoints=['Dallas', 'Bangor', 'Phoenix'], optimizeWaypoints=True)
-    assert optimized[0]['waypoint_order'] == [2, 0, 1] and nonOptimized[0]['waypoint_order'] == [0, 1, 2]
+    non_optimized = api.directions('Los Angeles', 'New York', 
+                                  waypoints=['Dallas', 'Bangor', 'Phoenix'])
+    optimized = api.directions('Los Angeles', 'New York', 
+                               waypoints=['Dallas', 'Bangor', 'Phoenix'],
+                               optimize_waypoints=True)
+    assert optimized[0]['waypoint_order'] == [2, 0, 1] 
+    assert non_optimized[0]['waypoint_order'] == [0, 1, 2]
