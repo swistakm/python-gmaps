@@ -147,3 +147,9 @@ def test_directions_units():
     assert u"mi" in imperial["text"]
     # but value is the same (in meters)
     assert metric["value"] == imperial["value"]
+
+@retry
+def test_array_serialization():
+    tollsHighways = Directions().directions('paris', 'berlin', avoid=('tolls', 'highways'))[0]['legs'][0]['duration']
+    highwaysTolls = Directions().directions('paris', 'berlin', avoid=('highways', 'tolls'))[0]['legs'][0]['duration']
+    assert tollsHighways == highwaysTolls
