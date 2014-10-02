@@ -8,7 +8,8 @@ class Directions(Client):
     def directions(self, origin, destination, mode=None, alternatives=None,
                    waypoints=[], optimize_waypoints=False,
                    avoid=None, language=None, units=None,
-                   region=None, departure_time=None, arrival_time=None, sensor=None):
+                   region=None, departure_time=None,
+                   arrival_time=None, sensor=None):
         """Get directions between locations
 
         :param origin: Origin location - string address; (latitude, longitude)
@@ -41,7 +42,7 @@ class Directions(Client):
             seconds since midnight, January 1, 1970 UTC
         :param arrival_time: Desired time of arrival for transit directions as
             seconds since midnight, January 1, 1970 UTC.
-        """
+        """  # noqa
         if optimize_waypoints:
             waypoints.insert(0, "optimize:true")
         parameters = dict(

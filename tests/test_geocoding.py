@@ -99,8 +99,8 @@ def test_reverse_override_sensor():
 def test_reverse_language():
     results = geocoding.reverse(lat=51.213, lon=21.213, language='pl')
     assert results
-    # given lat lon are position somwhere in poland so test if there is 'Polska'
-    # in formatted_address of first result
+    # given lat lon are position somwhere in poland so test if there is
+    # 'Polska' in formatted_address of first result
     assert 'Polska' in results[0]['formatted_address']
 
 
@@ -108,7 +108,7 @@ def test_reverse_language():
 @retry
 def test_exception_when_sensor_bad():
     with pytest.raises(errors.GmapException):
-        response = geocoding.reverse(lat=51.213, lon=21.213, sensor="foo")
+        geocoding.reverse(lat=51.213, lon=21.213, sensor="foo")
 
     with pytest.raises(errors.GmapException):
-        response = geocoding.geocode(u"Wrocław, Hubska", sensor="foo")
+        geocoding.geocode(u"Wrocław, Hubska", sensor="foo")

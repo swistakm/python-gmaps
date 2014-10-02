@@ -8,7 +8,7 @@ def total_seconds(td):
     """
     Take a timedelta and return the number of seconds it represents
     """
-    return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
+    return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6  # noqa
 
 
 def unixtimestamp(datetime):

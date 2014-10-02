@@ -12,7 +12,8 @@ class Client(object):
     :param sensor: boolean value indicating if application is using sensor
         (such as a GPS locator) to determine the user's location.
     :param api_key: google business API key
-    :param use_https: boolean indicating if https should be use to make requests
+    :param use_https: boolean indicating if https should be use to make
+        requests
 
     .. note:: Google API won't allow you to make plain http requests with
         API key. If you would like to use api_key you should use https too.
@@ -63,7 +64,7 @@ class Client(object):
         """
         url = urlparse.urljoin(urlparse.urljoin(self.base, url), "json")
 
-        #drop all None values and use defaults if not set
+        # drop all None values and use defaults if not set
         parameters = {key: value for key, value in parameters.items() if
                       value is not None}
         parameters.setdefault("sensor", self.sensor)
@@ -81,8 +82,10 @@ class Client(object):
             return response
         else:
             response["url"] = raw_response.url
-            raise errors.EXCEPTION_MAPPING.get(response["status"],
-                                               errors.GmapException)(response)
+            raise errors.EXCEPTION_MAPPING.get(
+                response["status"],
+                errors.GmapException
+            )(response)
 
     @staticmethod
     def assume_latlon_or_address(location):
@@ -99,7 +102,9 @@ class Client(object):
             try:
                 output = "%f,%f" % (location["lat"], location["lon"])
             except KeyError:
-                raise TypeError("%s is invalid location object" % str(location))
+                raise TypeError(
+                    "%s is invalid location object" % str(location)
+                )
         elif hasattr(location, "__iter__") and len(location) == 2:
             output = "%f,%f" % (location[0], location[1])
         elif hasattr(location, "lat") and hasattr(location, "lon"):

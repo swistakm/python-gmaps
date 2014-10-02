@@ -28,4 +28,3 @@ EXCEPTION_MAPPING = {
     status.INVALID_REQUEST: InvalidRequest,
     status.OVER_QUERY_LIMIT: RateLimitExceeded,
 }
-

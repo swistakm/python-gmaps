@@ -5,8 +5,8 @@ from gmaps.client import Client
 class Geocoding(Client):
     GEOCODE_URL = "geocode/"
 
-    def geocode(self, address=None, components=None, region=None, language=None,
-                bounds=None, sensor=None):
+    def geocode(self, address=None, components=None, region=None,
+                language=None, bounds=None, sensor=None):
         """Geocode given address. Geocoder can queried using address and/or
         components. Components when used with address will restrict your query
         to specific area. When used without address they act like more precise
@@ -19,10 +19,10 @@ class Geocoding(Client):
             two-character value, influences but not restricts query result
         :param language: the language in which to return results. For full list
             of laguages go to Google Maps API docs
-        :param bounds: two-tuple of (latitude, longitude) pairs of bounding box.
-            Influences but not restricts result (same as region parameter)
+        :param bounds: two-tuple of (latitude, longitude) pairs of bounding
+            box. Influences but not restricts result (same as region parameter)
         :param sensor: override default client sensor parameter
-        """
+        """  # noqa
         parameters = dict(
             address=address,
             components=components,
@@ -41,8 +41,8 @@ class Geocoding(Client):
 
         :param lat: latitude of queried point
         :param lon: longitude of queried point
-        :param language: the language in which to return results. For full list
-             of laguages go to Google Maps API docs
+        :param language: the language in which to return results. For full
+             list of laguages go to Google Maps API docs
         :param sensor: override default client sensor parameter
 
         .. note:: Google API allows to specify both latlng and address params

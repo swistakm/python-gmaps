@@ -27,7 +27,7 @@ def test_unixtimestamp_tzaware():
 @retry
 def test_timezone():
     once_upon_a_time = datetime(2014, 5, 9)
-    somwhere_in_poland = lat, lon = 51.115355, 17.0256261
+    somwhere_in_poland = lat, lon = 51.115355, 17.0256261  # noqa
 
     result = timezone(lat, lon, once_upon_a_time)
     assert result['timeZoneId'] == u'Europe/Warsaw'
@@ -36,7 +36,7 @@ def test_timezone():
 @retry
 def test_timezone_language():
     once_upon_a_time = datetime(2014, 5, 9)
-    somwhere_in_poland = lat, lon = 51.115355, 17.0256261
+    somwhere_in_poland = lat, lon = 51.115355, 17.0256261  # noqa
 
     result = timezone(lat, lon, once_upon_a_time, language='PL')
     assert result['timeZoneId'] == u'Europe/Warsaw'
