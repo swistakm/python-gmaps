@@ -85,6 +85,11 @@ lib - they will be checked anyway.
 
 ## Changes
 
+### 0.2.0 (2014-10-02)
+- fixed lists serialization issue (#1) thanks to @feighter09
+- added pep8 compliance test using flake8
+- pep8 compliance
+
 ### 0.1.1 (2014-05-16)
 - python 3.3 support
 
