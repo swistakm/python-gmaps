@@ -46,8 +46,8 @@ class Client(object):
             elif isinstance(value, dict):
                 parameters[key] = "|".join(
                     ("%s:%s" % (k, v) for k, v in value.items()))
-            elif isinstance(value, list) or isinstance(value, tuple):
-                parameters[key] = "|".join(val for val in value)
+            elif isinstance(value, (list, tuple)):
+                parameters[key] = "|".join(value)
         return parameters
 
     def _make_request(self, url, parameters, result_key):
