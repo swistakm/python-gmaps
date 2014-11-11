@@ -2,7 +2,7 @@
 from gmaps import status
 
 
-class GmapException(BaseException):
+class GmapException(Exception):
     """Base exception for all python-gmap exceptions"""
 
 
