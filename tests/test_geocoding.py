@@ -10,7 +10,7 @@ geocoding = Geocoding(sensor=False)
 
 @retry
 def test_geocode():
-    results = geocoding.geocode(u"Hubska")
+    results = geocoding.geocode(u"Wrocław, Hubska")
     assert results
     assert len(results) > 0
 

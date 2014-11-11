@@ -95,13 +95,11 @@ def test_directions_mode_transit_invalid_request():
 
 @retry
 def test_directions_mode_transit():
-    from datetime import datetime
-
     try:
         api.directions(
             u"Warsaw, Poland", u"Poznań, Poland",
             mode="transit",
-            departure_time=int(datetime.utcnow().strftime("%s"))
+            departure_time=1415715677
         )
 
     except errors.NoResults:
@@ -112,7 +110,7 @@ def test_directions_mode_transit():
     try:
         api.directions(
             u"Warsaw, Poland", u"Poznań, Poland",
-            mode="transit", arrival_time=int(datetime.utcnow().strftime("%s"))
+            mode="transit", arrival_time=1415715677
         )
     except errors.NoResults:
         pass
