@@ -44,7 +44,7 @@ with `api_key` param
 
 ```python
 from gmaps import Geocoding
-api = Geocoding(api_key='your_secret_api_key`)
+api = Geocoding(api_key='your_secret_api_key')
 ```
 
 Each endpoint method raises adequate exception when status of query is different
@@ -84,6 +84,9 @@ These values can change anytime so there is no reason to check for them in this
 lib - they will be checked anyway.
 
 ## Changes
+
+### 0.2.1 (2014-11-11)
+- `gmaps.errors.GmapException` inherits from `Exception` instead of `BaseException`
 
 ### 0.2.0 (2014-10-02)
 - fixed lists serialization issue (#1) thanks to @feighter09
