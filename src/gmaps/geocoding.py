@@ -36,11 +36,16 @@ class Geocoding(Client):
                 bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1])
         return self._make_request(self.GEOCODE_URL, parameters, "results")
 
-    def reverse(self, lat, lon, language=None, sensor=None):
+    def reverse(self, lat, lon, result_type=None, location_type=None,
+                language=None, sensor=None):
         """Reverse geocode with given latitude and longitude.
 
         :param lat: latitude of queried point
         :param lon: longitude of queried point
+        :param result_type: list of result_type for filtered search.
+             Accepted values:
+             https://developers.google.com/maps/documentation/geocoding/intro#Types
+        :param location_type: list of location_type for filtered search.
         :param language: the language in which to return results. For full
              list of laguages go to Google Maps API docs
         :param sensor: override default client sensor parameter
@@ -51,6 +56,8 @@ class Geocoding(Client):
         """
         parameters = dict(
             latlng="%f,%f" % (lat, lon),
+            result_type=result_type,
+            location_type=location_type,
             language=language,
             sensor=sensor,
         )
