@@ -76,6 +76,7 @@ Available endpoints:
 * `Geocoding()`
 * `Directions()`
 * `Timezone()`
+* `Elevation()`
 
 For detailed documentation of each endpoint refer to dosctrings or
 [this API documentation](http://python-gmaps.readthedocs.org/en/latest/).
@@ -86,6 +87,14 @@ These values can change anytime so there is no reason to check for them in this
 lib - they will be checked anyway.
 
 ## Changes
+
+### 0.3.0 (2015-08-31)
+- added two additional optional parameters to reverse geocoding that
+  allow restricting type of results (`result_type` and `result_type`)
+  thanks to @20tab
+- added `gmaps.polyline.encode()` utility function to encode paths using
+  [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm?hl=en)
+- `Elevation` endpoint added implemented
 
 ### 0.2.1 (2014-11-11)
 - `gmaps.errors.GmapException` inherits from `Exception` instead of `BaseException`
