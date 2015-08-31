@@ -7,6 +7,7 @@ from gmaps.compat import urlparse, is_string
 
 
 class Client(object):
+
     """Base class for Google Maps API endpoints
 
     :param sensor: boolean value indicating if application is using sensor
