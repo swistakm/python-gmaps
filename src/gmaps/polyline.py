@@ -46,4 +46,3 @@ def _split_into_chunks(value):
         yield (value & 31) | 0x20
         value >>= 5
     yield value
-
