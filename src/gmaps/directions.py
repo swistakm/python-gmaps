@@ -6,7 +6,7 @@ class Directions(Client):
     DIRECTIONS_URL = 'directions/'
 
     def directions(self, origin, destination, mode=None, alternatives=None,
-                   waypoints=[], optimize_waypoints=False,
+                   waypoints=None, optimize_waypoints=False,
                    avoid=None, language=None, units=None,
                    region=None, departure_time=None,
                    arrival_time=None, sensor=None):
@@ -50,7 +50,7 @@ class Directions(Client):
             destination=self.assume_latlon_or_address(destination),
             mode=mode,
             alternatives=alternatives,
-            waypoints=waypoints,
+            waypoints=waypoints or [],
             avoid=avoid,
             language=language,
             units=units,
