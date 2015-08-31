@@ -6,3 +6,4 @@ __version__ = ".".join([str(x) for x in VERSION])
 from gmaps.geocoding import Geocoding
 from gmaps.directions import Directions
 from gmaps.timezone import Timezone
+from gmaps.elevation import Elevation
