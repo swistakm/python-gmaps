@@ -85,15 +85,6 @@ def test_directions_mode():
 
 
 @retry
-def test_directions_mode_transit_invalid_request():
-    """test that mode=transit raises exception when no departure or
-    arrival time is set
-    """
-    with pytest.raises(errors.InvalidRequest):
-        api.directions(u"Warsaw, Poland", u"Katowice, Poland", mode="transit")
-
-
-@retry
 def test_directions_mode_transit():
     try:
         api.directions(
