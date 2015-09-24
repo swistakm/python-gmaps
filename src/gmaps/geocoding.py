@@ -45,6 +45,7 @@ class Geocoding(Client):
         :param result_type: list of result_type for filtered search.
              Accepted values:
              https://developers.google.com/maps/documentation/geocoding/intro#Types
+             **Important**: this feature may require using API key to work.
         :param location_type: list of location_type for filtered search.
         :param language: the language in which to return results. For full
              list of laguages go to Google Maps API docs
