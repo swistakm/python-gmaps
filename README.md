@@ -90,7 +90,7 @@ lib - they will be checked anyway.
 
 ### 0.3.0 (2015-08-31)
 - added two additional optional parameters to reverse geocoding that
-  allow restricting type of results (`result_type` and `result_type`)
+  allow restricting type of results (`result_type` and `location_type`)
   thanks to @20tab
 - added `gmaps.polyline.encode()` utility function to encode paths using
   [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm?hl=en)
