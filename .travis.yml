@@ -2,10 +2,11 @@ language: python
 install:
   - pip install -U pip
   - pip install tox
-  - pip install coveralls
 env:
   - TOX_ENV=py27
   - TOX_ENV=py33
+  - TOX_ENV=py34
+  - TOX_ENV=py35
   - TOX_ENV=pep8
   - TOX_ENV=coverage
 
