@@ -109,10 +109,14 @@ def test_directions_mode_transit():
 
 @retry
 def test_directions_alternatives():
-    with_alts = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
-                               alternatives=True)
-    without_alts = api.directions(u"Warsaw, Poland", u"Katowice, Poland",
-                                  alternatives=False)
+    with_alts = api.directions(
+        u"Warsaw, Poland", u"Paris, France",
+        alternatives=True
+    )
+    without_alts = api.directions(
+        u"Warsaw, Poland", u"Paris, France",
+        alternatives=False
+    )
     assert len(with_alts) > 1
     assert len(without_alts) == 1
 
