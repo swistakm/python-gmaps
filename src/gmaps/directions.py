@@ -22,12 +22,11 @@ class Directions(Client):
             route alternative
         :param waypoints: Iterable with set of intermediate stops,
             like ("Munich", "Dallas")
-            `See google docs details under <https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest>`_
+            See `google docs details <https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest>`_
         :param optimize_waypoints: if true will attempt to re-order supplied
             waypoints to minimize overall cost of the route. If waypoints are
             optimized, the route returned will show the optimized order under
-            "waypoint_order"
-            `See google docs details under <https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest>`_
+            "waypoint_order". See `google docs details <https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest>`_
         :param avoid: Iterable with set of restrictions,
             like ("tolls", "highways"). For full list refer to
             `google docs details <https://developers.google.com/maps/documentation/directions/#Restrictions>`_
