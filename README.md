@@ -88,6 +88,13 @@ lib - they will be checked anyway.
 
 ## Changes
 
+### 0.3.1 (2016-03-23)
+
+- updated list of trove classifiers
+- nicer `long_description` on PyPI
+- simplified requirements in `setup.py` script
+
+
 ### 0.3.0 (2015-08-31)
 - added two additional optional parameters to reverse geocoding that
   allow restricting type of results (`result_type` and `location_type`)
